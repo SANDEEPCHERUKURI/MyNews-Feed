@@ -14,4 +14,8 @@ export class HTTPTestService {
     return this._http.get('assets/comments.json')
       .map(res=>res.json());
   }
+  getlogindata() {
+    return this._http.get('assets/login.json')
+      .map(res => res.json());
+  }
 }
