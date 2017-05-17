@@ -1,5 +1,5 @@
 <h1>
-  Welcome Mr.<h2>{{this.User_name}}</h2>
+  Welcome Mr.<h2>{{this.c}}</h2>
 </h1>
 
 <div class="container">
@@ -18,7 +18,7 @@
       </nav>
       <!-- <div><h2 class="add"></h2></div>-->
     </div>
-    <div class="col-md-10 blogShort pull-right" *ngFor="let i of data; let j =index">
+    <div class="col-md-10 blogShort pull-right" *ngFor="let i of data">
       <div class="row">
         <h5><h2>{{i.postBy}}</h2> Posted</h5>
 
@@ -34,7 +34,7 @@
           <div class="form-group">
             <div class="col-lg-6">
               <p>{{this.ki}}</p>
-              <input class="form-control" id="com_com" placeholder="please enter your comment">
+              <input class="form-control" id="com_com" name="com_com" [(ngModel)]="com_com"  placeholder="please enter your comment">
 
             </div>
           </div>
@@ -74,15 +74,15 @@
       <div class="col-lg-8">
       <div class="form-group">
         <label>Title:</label>
-        <input type="text" class="form-control" id="tit">
-        {{tit}}
+        <input type="text" class="form-control" name="tit" [(ngModel)]="tit" id="tit">
+
       </div>
       </div>
       <div class="col-lg-8">
       <div class="form-group">
         <label >Post:</label>
-        <textarea class="form-control" rows="5" id="post"></textarea>
-        {{post}}
+        <textarea class="form-control" rows="5" name="post" [(ngModel)]="post" id="post"></textarea>
+
       </div>
       </div>
     </div>
@@ -95,8 +95,6 @@
   <form class="form-horizontal">
     <div class="form-group">
       <div class="col-lg-6">
-        <h4>Invalid User:</h4>
-        <h4>Or</h4>
         <h4>Can't Share an Empty Post</h4>
     </div>
     </div>

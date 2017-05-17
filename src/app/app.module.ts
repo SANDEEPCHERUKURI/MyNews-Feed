@@ -10,6 +10,7 @@ import { rootRouterConfig } from './app.router';
 import { AlertModule } from 'ng2-bootstrap/ng2-bootstrap';
 import {PopupModule} from 'ng2-opd-popup';
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
+import { LocalStorageModule } from 'angular-2-local-storage';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +24,10 @@ import { BootstrapModalModule } from 'ng2-bootstrap-modal';
     RouterModule.forRoot(rootRouterConfig, { useHash: true }),
     AlertModule.forRoot(),
     PopupModule.forRoot(),
-    BootstrapModalModule.forRoot({container:document.body})
+    BootstrapModalModule.forRoot({container:document.body}),
+    LocalStorageModule.withConfig({
+      prefix: 'my-app',
+      storageType: 'localStorage'})
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,19 +1,30 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Popup} from 'ng2-opd-popup';
-import {HTTPTestService} from "./http-test.service"
-import {wrapProgram} from "tslint";
-import {ActivatedRoute} from "@angular/router";
+import {HTTPService} from "./http-test.service"
+/*
+ import {wrapProgram} from "tslint";
+ import {ActivatedRoute} from "@angular/router";
+ */
 import {Router,NavigationExtras} from '@angular/router';
-import {validate} from "codelyzer/walkerFactory/walkerFn";
+import { LocalStorageService } from 'angular-2-local-storage';
+/*
+ import {validate} from "codelyzer/walkerFactory/walkerFn";
+ import { LoginComponent } from '../login/login.component';
+ */
+/*import {DATATestService} from "../data-test.service"*/
+/*import {error} from "util";*/
 @Component({
   selector: 'app-news',
   templateUrl: './news.component.html',
   styleUrls: ['./news.component.css'],
-  providers:[HTTPTestService]
+  providers:[HTTPService]
 })
 export class NewsComponent implements OnInit{
  // @Input() name: string;
-  public User_name;
+  public tit:string="";
+  public com_com;
+  public post:string="";
+  //public User_name;
   public data;
   public news;
   public com;
@@ -21,8 +32,9 @@ export class NewsComponent implements OnInit{
   public comment1;
   public  ki;
   public login;
-
-  constructor(public _httpService: HTTPTestService,private route: ActivatedRoute,private Routes:Router ) {
+  public c;
+  //public f_user;
+  constructor(public _httpService: HTTPService,private Routes:Router,public LocalStorage:LocalStorageService) {
 
     this._httpService.getjsondata()
       .subscribe(data => this.data = data,
@@ -37,12 +49,23 @@ export class NewsComponent implements OnInit{
       .subscribe(login=>this.login=login,
       error=>alert(error),
         ()=> console.log("Finished3"));
+    this.c =  this.LocalStorage.get("id");
+
+    // this.f_user=this.login_user.userName;
+    // alert(this.f_user);
+
+
+
+    // this.use.getname()
+    //   .subscribe(str_name=>this.pp=str_name
+    //     ,error=>alert(error),
+    //     ()=>alert(this.pp+"<----"));
     //console.log(this.com);
   }
   ngOnInit(){
-    this.route.queryParams.subscribe(params => {
-      this.User_name = params["user_name"];
-    });
+    // this.route.queryParams.subscribe(params => {
+    //   this.User_name = params["user_name"];
+    // });
 
   }
   @ViewChild('popup1') popup1: Popup;
@@ -50,28 +73,30 @@ export class NewsComponent implements OnInit{
   @ViewChild('popup3') popup3: Popup;
   @ViewChild('popup4') popup4:Popup;
   validate(){
+    //alert(this.f_user);
     for(let u=0;u<this.login.length;u++){
-      if(this.login[u].name===this.User_name){
+      if(this.login[u].name===this.c){
         return true;
       }
     }
   }
   add(){
-    var tit=(<HTMLInputElement>document.getElementById("tit")).value;
-    var post=(<HTMLInputElement>document.getElementById("post")).value;
+
+    this.tit;
+    this.post;
     let n=false;
     n=this.validate();
-   // alert(n);
-    if(tit!=="" && post!=="" && n){
-      var obj={
-        title: tit,
-        post:post,
-        postBy:this.User_name
+  // alert(n);
+    if(this.tit!=="" && this.post!=="" && n){
+      let obj={
+        title: this.tit,
+        post:this.post,
+        postBy:this.c
       };
-      var obj1={
-        title:tit,
+      let obj1={
+        title:this.tit,
         comment:[]
-      }
+      };
       this.com.push(obj1);
       this.data.push(obj);
       this.clear();
@@ -84,7 +109,7 @@ export class NewsComponent implements OnInit{
   }
   dis(name){
     let k=false;
-    k=this.validate()
+    k=this.validate();
     if(k){
       this.comment1=[];
       this.com_title=name;
@@ -95,7 +120,7 @@ export class NewsComponent implements OnInit{
           // alert(this.com[co].title);
           for(let j=0;j<this.com[co].comment.length;j++){
             // alert(this.com[co].comment[j]);
-            this.comment1.push(this.com[co].comment[j])
+            this.comment1.push(this.com[co].comment[j]);
             console.log(this.comment1);
           }
 
@@ -109,24 +134,29 @@ export class NewsComponent implements OnInit{
 
   }
   clear(){
-    (<HTMLInputElement>document.getElementById("tit")).value="";
-    (<HTMLInputElement>document.getElementById("post")).value="";
+    this.tit="";
+    //alert(this.tit);
+    this.post="";
+    // (<HTMLInputElement>document.getElementById("tit")).value="";
+    // (<HTMLInputElement>document.getElementById("post")).value="";
 
   }
   clear1(){
-    (<HTMLInputElement>document.getElementById("com_com")).value="";
+    // (<HTMLInputElement>document.getElementById("com_com")).value="";
+    this.com_com="";
   }
   add_com(dc){
     let add=false;
-    add=this.validate()
-    if(add)
+    add=this.validate();
+    if(add && dc!=="")
     {
       for(let co=0;co<this.com.length;co++){
         // alert(dc+"=========>");
         if(this.com[co].title===this.ki){
           //  alert(this.ki+"<----------");
-          let new_comment=(<HTMLInputElement>document.getElementById("com_com")).value
-          this.com[co].comment.push(new_comment);
+          //let new_comment=(<HTMLInputElement>document.getElementById("com_com")).value
+          this.com_com;
+          this.com[co].comment.push(this.com_com);
         }
       }
       this.clear1();
@@ -150,7 +180,7 @@ export class NewsComponent implements OnInit{
       animation: "bounceInDown",
       confirmBtnContent: "Post!",
       cancleBtnContent:"cancel"
-    }
+    };
     this.popup1.show(this.popup1.options);
   }
   showPopup2(app){
@@ -165,7 +195,7 @@ export class NewsComponent implements OnInit{
       animation: "bounceInDown",
       confirmBtnContent: "Add!",
       cancleBtnContent:"cancel"
-    }
+    };
     this.popup2.show(this.popup2.options);
   }
   showPopup3(){
@@ -175,7 +205,7 @@ export class NewsComponent implements OnInit{
       color: "#53de74",
       header: "View Comments..............",
       widthProsentage:60,
-      animation: "bounceIn"}
+      animation: "bounceIn"};
     this.popup3.show(this.popup3.options);
   }
   add_comment(tit_nam){
@@ -190,14 +220,14 @@ export class NewsComponent implements OnInit{
       color: "#53de74",
       header: "Error",
       widthProsentage:35,
-      animation: "bounceIn"}
+      animation: "bounceIn"};
     this.popup4.show(this.popup4.options);
   }
   logout(){
-    this.Routes.navigate(['/login'])
+    this.LocalStorage.clearAll();
+    this.Routes.navigate(['/login']);
 
   }
-
 
 
 }
