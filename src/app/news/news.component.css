@@ -18,11 +18,11 @@
 }
 .nav-sidebar .active a {
   cursor: default;
-  background-color: #34ca78;
+  background-color:	#60B95D;
   color: #fff;
 }
 .nav-sidebar .active a:hover {
-  background-color: #37D980;
+  background-color:	#60B95D;
 }
 .nav-sidebar .text-overflow a,
 .nav-sidebar .text-overflow .media-body {
@@ -34,8 +34,8 @@
 
 .btn-blog {
   color: #ffffff;
-  background-color: #37d980;
-  border-color: #37d980;
+  background-color: 	#60B95D;
+  border-color: 	#60B95D;
   border-radius:0;
   margin-bottom:10px
 }
@@ -45,8 +45,8 @@
 .btn-blog.active,
 .open .dropdown-toggle.btn-blog {
   color: white;
-  background-color:#34ca78;
-  border-color: #34ca78;
+  background-color:	#60B95D;
+  border-color: 	#60B95D;
 }
-h2{color:#34ca78;}
+h2{color:	#60B95D;}
 .margin10{margin-bottom:10px; margin-right:10px;}

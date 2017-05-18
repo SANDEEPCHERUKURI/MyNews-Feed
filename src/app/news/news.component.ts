@@ -21,8 +21,9 @@ import { LocalStorageService } from 'angular-2-local-storage';
 })
 export class NewsComponent implements OnInit{
  // @Input() name: string;
+  public date;
   public tit:string="";
-  public com_com;
+  public com_com="";
   public post:string="";
   //public User_name;
   public data;
@@ -146,9 +147,10 @@ export class NewsComponent implements OnInit{
     this.com_com="";
   }
   add_com(dc){
+
     let add=false;
     add=this.validate();
-    if(add && dc!=="")
+    if(add && this.com_com!=="")
     {
       for(let co=0;co<this.com.length;co++){
         // alert(dc+"=========>");
@@ -174,7 +176,7 @@ export class NewsComponent implements OnInit{
     this.popup1.options = {
       cancleBtnClass: "btn btn-default",
       confirmBtnClass: "btn btn-mbe-attack ",
-      color: "#53de74",
+      color: "#60B95D",
       header: "My New Post.......",
       widthProsentage:50,
       animation: "bounceInDown",
@@ -189,7 +191,7 @@ export class NewsComponent implements OnInit{
     this.popup2.options = {
       cancleBtnClass: "btn btn-default",
       confirmBtnClass: "btn btn-mbe-attack ",
-      color: "#53de74",
+      color: "#60B95D",
       header: "Add Your Comment to :" +this.ki,
       widthProsentage:50,
       animation: "bounceInDown",
@@ -202,7 +204,7 @@ export class NewsComponent implements OnInit{
     this.popup3.options = {
       cancleBtnClass: "btn btn-default",
       confirmBtnClass: "btn btn-default",
-      color: "#53de74",
+      color: "#60B95D",
       header: "View Comments..............",
       widthProsentage:60,
       animation: "bounceIn"};
@@ -217,7 +219,7 @@ export class NewsComponent implements OnInit{
     this.popup4.options = {
       cancleBtnClass: "btn btn-default",
       confirmBtnClass: "btn btn-default",
-      color: "#53de74",
+      color: "#60B95D",
       header: "Error",
       widthProsentage:35,
       animation: "bounceIn"};

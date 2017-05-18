@@ -5,16 +5,16 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-offset-5 col-md-3">
+    <div class="col-md-offset-4 col-md-5">
       <div class="form-login">
-        <h4>Welcome back.</h4>
+        <h2>Welcome back.</h2>
         <input type="text" id="userName" name="userName" [(ngModel)]="userName" class="form-control input-sm chat-input" placeholder="username" />
         <br>
         <input type="password" id="userPassword" name="userPassword" [(ngModel)]="userPassword" class="form-control input-sm chat-input" placeholder="password" />
         <br>
         <div class="wrapper">
             <span class="group-btn">
-                <a class="btn btn-primary btn-md" (click)="valid()">login <i class="fa fa-sign-in"></i></a >
+                <button class="btn btn-primary btn-md" (click)="valid()">login <i class="fa fa-sign-in"></i></button >
             </span>
         </div>
       </div>

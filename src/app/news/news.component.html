@@ -1,17 +1,13 @@
 <h1>
-  Welcome Mr.<h2>{{this.c}}</h2>
+  Welcome Mr.{{this.c | uppercase}}
 </h1>
-
 <div class="container">
   <div id="blog" class="row">
-
     <div class="col-sm-2 paddingTop20">
       <nav class="nav-sidebar">
         <ul class="nav">
-
           <br>
-          <li><button class="btn btn-success" (click)="showPopup1()" >Add-News-Feed</button></li>
-
+          <li><button class="btn btn-success" (click)="showPopup1()" >Compose News Feed</button></li>
           <li class="nav-divider"></li>
           <li><button class="btn btn-success" (click)="logout()"><i class="glyphicon glyphicon-off"></i> Sign Out</button></li>
         </ul>
@@ -20,84 +16,76 @@
     </div>
     <div class="col-md-10 blogShort pull-right" *ngFor="let i of data">
       <div class="row">
-        <h5><h2>{{i.postBy}}</h2> Posted</h5>
-
+        <h5>
+          <h2>{{i.postBy}}</h2>
+          Posted
+        </h5>
       </div>
-
       <h3>{{i.title}}</h3>
-      <article><p>{{i.post}}
-      </p></article>
+      <article>
+        <p>{{i.post}}
+        </p>
+      </article>
       <button class="btn btn-blog pull-left marginBottom10" (click)="add_comment(i.title)">ADD COMMENTS</button>
       <popup #popup2 (confirmClick)="add_com(this.ki)">
-
         <form class="form-horizontal">
           <div class="form-group">
             <div class="col-lg-6">
               <p>{{this.ki}}</p>
               <input class="form-control" id="com_com" name="com_com" [(ngModel)]="com_com"  placeholder="please enter your comment">
-
             </div>
           </div>
-
         </form>
       </popup>
       <a class="btn btn-blog pull-right marginBottom10" (click)="dis(this.i.title)" >VIEW COMMENTS</a>
       <popup #popup3 >
-
         <form class="form-horizontal">
           <div class="form-group">
             <div class="col-lg-6">
               <h4>Comment of :{{com_title}}</h4>
               <!--<div *ngIf="com_title==i.title">-->
               <div *ngFor="let c of comment1; let j =index;">
-                <td>{{c}}</td>
+                <ul class="list-group">
+                  <li class="list-group-item list-group-item-success justify-content-between">{{c}}
+                    <span class="badge badge-default badge-pill">14</span>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
-         <!-- </div>-->
-
+          <!-- </div>-->
         </form>
       </popup>
-
     </div>
-
-
     <!-- <div class="col-md-12 gap10"></div>-->
   </div>
 </div>
-
 <!-----------------------------------------Adding a Post----------------------------------------------->
 <popup #popup1 (confirmClick)="add()">
-
   <form class="form-horizontal">
     <div class="form-group">
       <div class="col-lg-8">
-      <div class="form-group">
-        <label>Title:</label>
-        <input type="text" class="form-control" name="tit" [(ngModel)]="tit" id="tit">
-
-      </div>
+        <div class="form-group">
+          <label>Title:</label>
+          <input type="text" class="form-control" name="tit" [(ngModel)]="tit" id="tit">
+        </div>
       </div>
       <div class="col-lg-8">
-      <div class="form-group">
-        <label >Post:</label>
-        <textarea class="form-control" rows="5" name="post" [(ngModel)]="post" id="post"></textarea>
-
-      </div>
+        <div class="form-group">
+          <label >Post:</label>
+          <textarea class="form-control" rows="5" name="post" [(ngModel)]="post" id="post"></textarea>
+        </div>
       </div>
     </div>
-
   </form>
 </popup>
 <!------------------------------Add - Comments To a Post-------------------------------------->
 <popup #popup4 >
-
   <form class="form-horizontal">
     <div class="form-group">
       <div class="col-lg-6">
         <h4>Can't Share an Empty Post</h4>
+      </div>
     </div>
-    </div>
-
   </form>
 </popup>

@@ -5,8 +5,8 @@ import {Router,NavigationExtras} from '@angular/router';
 import { LocalStorageService } from 'angular-2-local-storage';
 
 //import {Routes} from  "./app.router";
-import {RouterModule} from '@angular/router'
-import {componentFactoryName} from "@angular/compiler";
+//import {RouterModule} from '@angular/router'
+//import {componentFactoryName} from "@angular/compiler";
 
 //import {DATATestService} from "../data-test.service";
 @Component({
@@ -17,6 +17,8 @@ import {componentFactoryName} from "@angular/compiler";
 })
 export class LoginComponent{
   //private Routes:any;
+  private errMsg1: string;
+  private userListReceived=[];
   public login;
   public userPassword;
   public userName;
@@ -27,6 +29,7 @@ export class LoginComponent{
         error => alert(error),
         () => console.log("Finished")
       );
+    this._httpService.getUserListMethod();
   }
 //   const routes =[
 //     path= 'news',
@@ -40,7 +43,7 @@ export class LoginComponent{
     this.userPassword;
     for(let i =0;i<this.login.length;i++){
       if((this.login[i].name==this.userName) && (this.login[i].passord==this.userPassword)){
-        alert("ok");
+        //alert("ok");
         flag=0;
         let navigationExtras: NavigationExtras = {
           queryParams: {
