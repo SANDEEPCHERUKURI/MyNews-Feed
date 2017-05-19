@@ -116,32 +116,32 @@ export class NewsComponent implements OnInit{
     }
 
   }
-  dis=(name:string)=>{
-    let k=false;
-    k=this.validate();
-    if(k){
-      this.comment1=[];
-      this.com_title=name;
-      //  alert(this.com_title);
-      for(let co=0;co<this.com.length;co++){
-        //console.log(this.com[co].comment);
-        if(this.com[co].title==name){
-          // alert(this.com[co].title);
-          for(let j=0;j<this.com[co].comment.length;j++){
-            // alert(this.com[co].comment[j]);
-            this.comment1.push(this.com[co].comment[j]);
-            console.log(this.comment1);
-          }
-
-        }
-      }
-      this.showPopup3()
-    }
-    else{
-      this.showPopup4();
-    }
-
-  }
+  // dis=(name:string)=>{
+  //   let k=false;
+  //   k=this.validate();
+  //   if(k){
+  //     this.comment1=[];
+  //     this.com_title=name;
+  //     //  alert(this.com_title);
+  //     for(let co=0;co<this.com.length;co++){
+  //       //console.log(this.com[co].comment);
+  //       if(this.com[co].title==name){
+  //         // alert(this.com[co].title);
+  //         for(let j=0;j<this.com[co].comment.length;j++){
+  //           // alert(this.com[co].comment[j]);
+  //           this.comment1.push(this.com[co].comment[j]);
+  //           console.log(this.comment1);
+  //         }
+  //
+  //       }
+  //     }
+  //
+  //   }
+  //   else{
+  //     this.showPopup4();
+  //   }
+  //
+  // }
   clear(){
     this.tit="";
     //alert(this.tit);
@@ -150,10 +150,10 @@ export class NewsComponent implements OnInit{
     // (<HTMLInputElement>document.getElementById("post")).value="";
 
   }
-  clear1(){
-    // (<HTMLInputElement>document.getElementById("com_com")).value="";
-    this.com_com="";
-  }
+  // clear1(){
+  //   // (<HTMLInputElement>document.getElementById("com_com")).value="";
+  //   this.com_com="";
+  // }
   add_com(dc){
     let flag=0;
     let add=false;
@@ -178,8 +178,8 @@ export class NewsComponent implements OnInit{
           flag=1;
         }
       }
-      this.clear1();
-      this.popup2.hide();
+      //this.clear1();
+     // this.popup2.hide();
     }
     else{
       this.showPopup4();
@@ -202,36 +202,36 @@ export class NewsComponent implements OnInit{
     };
     this.popup1.show(this.popup1.options);
   }
-  showPopup2(app){
-    this.ki= app;
-   // alert(this.ki)
-    this.popup2.options = {
-      cancleBtnClass: "btn btn-default",
-      confirmBtnClass: "btn btn-mbe-attack ",
-      color: "#60B95D",
-      header: "Add Your Comment to :" +this.ki,
-      widthProsentage:50,
-      animation: "bounceInDown",
-      confirmBtnContent: "Add!",
-      cancleBtnContent:"cancel"
-    };
-    this.popup2.show(this.popup2.options);
-  }
-  showPopup3(){
-    this.popup3.options = {
-      cancleBtnClass: "btn btn-default",
-      confirmBtnClass: "btn btn-default",
-      color: "#60B95D",
-      header: "View Comments..............",
-      widthProsentage:60,
-      animation: "bounceIn"};
-    this.popup3.show(this.popup3.options);
-  }
-  add_comment(tit_nam){
-    let k = tit_nam;
-  //  alert(k);
-    this.showPopup2(k);
-  }
+  // showPopup2(app){
+  //   this.ki= app;
+  //  // alert(this.ki)
+  //   this.popup2.options = {
+  //     cancleBtnClass: "btn btn-default",
+  //     confirmBtnClass: "btn btn-mbe-attack ",
+  //     color: "#60B95D",
+  //     header: "Add Your Comment to :" +this.ki,
+  //     widthProsentage:50,
+  //     animation: "bounceInDown",
+  //     confirmBtnContent: "Add!",
+  //     cancleBtnContent:"cancel"
+  //   };
+  //   this.popup2.show(this.popup2.options);
+  // }
+  // showPopup3(){
+  //   this.popup3.options = {
+  //     cancleBtnClass: "btn btn-default",
+  //     confirmBtnClass: "btn btn-default",
+  //     color: "#60B95D",
+  //     header: "View Comments..............",
+  //     widthProsentage:60,
+  //     animation: "bounceIn"};
+  //   this.popup3.show(this.popup3.options);
+  // }
+  // add_comment(tit_nam){
+  //   let k = tit_nam;
+  // //  alert(k);
+  //   this.showPopup2(k);
+  // }
   showPopup4(){
     this.popup4.options = {
       cancleBtnClass: "btn btn-default",
