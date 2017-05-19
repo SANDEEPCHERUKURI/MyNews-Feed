@@ -17,7 +17,7 @@ export class HTTPTestService {
     return this._http.get('assets/login.json')
       .map(res => res.json());
   }
-  getUserListMethod() {
+  getUserListMethod=()=> {
     const headers = new Headers();
     headers.append('Content-Type:','application/json;utf-8');
 
@@ -26,7 +26,7 @@ export class HTTPTestService {
       "passord":"Happy@511"
     }]; // problem area. assuming findU isn't passed through
 
-   return this._http.post('http://www.mocky.io/v2/591d46e1110000940882518d ',findU,headers)
+   return this._http.post('assets/login.json',findU,headers)
       .subscribe(()=>{},error=>console.log(error),
         ()=>alert(findU));
   } //END - getUserListMethod

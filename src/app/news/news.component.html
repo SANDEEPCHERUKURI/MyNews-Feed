@@ -37,25 +37,39 @@
           </div>
         </form>
       </popup>
-      <a class="btn btn-blog pull-right marginBottom10" (click)="dis(this.i.title)" >VIEW COMMENTS</a>
-      <popup #popup3 >
-        <form class="form-horizontal">
-          <div class="form-group">
-            <div class="col-lg-6">
-              <h4>Comment of :{{com_title}}</h4>
-              <!--<div *ngIf="com_title==i.title">-->
-              <div *ngFor="let c of comment1; let j =index;">
-                <ul class="list-group">
-                  <li class="list-group-item list-group-item-success justify-content-between">{{c}}
-                    <span class="badge badge-default badge-pill">14</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <!-- </div>-->
-        </form>
-      </popup>
+      <button class="btn btn-blog pull-right marginBottom10" (click)="dis(this.i.title)" >VIEW COMMENTS</button>
+    <br>
+      <br>
+      <br>
+     <div class="col-lg-4 pull-left" *ngIf="i.title==com_title">
+       <div *ngFor="let n_c of comment1">
+         <ul class="list-group">
+           <li class="list-group-item">
+             {{n_c}}
+           </li>
+         </ul>
+
+       </div>
+     </div>
+
+      <!--<popup #popup3 >-->
+        <!--<form class="form-horizontal">-->
+          <!--<div class="form-group">-->
+            <!--<div class="col-lg-6">-->
+              <!--<h4>Comment of :{{com_title}}</h4>-->
+              <!--&lt;!&ndash;<div *ngIf="com_title==i.title">&ndash;&gt;-->
+              <!--<div *ngFor="let c of comment1; let j =index;">-->
+                <!--<ul class="list-group">-->
+                  <!--<li class="list-group-item list-group-item-success justify-content-between">{{c}}-->
+                    <!--<span class="badge badge-default badge-pill">14</span>-->
+                  <!--</li>-->
+                <!--</ul>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--&lt;!&ndash; </div>&ndash;&gt;-->
+        <!--</form>-->
+      <!--</popup>-->
     </div>
     <!-- <div class="col-md-12 gap10"></div>-->
   </div>
