@@ -11,11 +11,14 @@ import { AlertModule } from 'ng2-bootstrap/ng2-bootstrap';
 import {PopupModule} from 'ng2-opd-popup';
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { LocalStorageModule } from 'angular-2-local-storage';
+import { ViewcommentComponent } from './viewcomment/viewcomment.component';
+import {DATATestService} from './data-test.service';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    NewsComponent
+    NewsComponent,
+    ViewcommentComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +32,7 @@ import { LocalStorageModule } from 'angular-2-local-storage';
       prefix: 'my-app',
       storageType: 'localStorage'})
   ],
-  providers: [],
+  providers:[DATATestService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

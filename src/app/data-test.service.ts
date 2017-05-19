@@ -2,15 +2,26 @@ import {Injectable} from "@angular/core";
 import 'rxjs/add/operator/map';
 @Injectable()
 export class DATATestService{
-  constructor(public str_name){
+  public data;
+  public post_title;
+  public comment_data;
+  constructor(){
 
   }
-  username(str){
-    //alert(str);
-    this.str_name=str;
-    alert(this.str_name+"<---- into service");
+  setNewsData(post_name,newsData:any,comData:any){
+    //console.log(newsData)
+    this.data=newsData;
+    this.post_title=post_name;
+    this.comment_data=comData;
   }
-  getname(){
-    return this.str_name;
+  getNewsData(){
+    return this.data;
   }
+  getPostName(){
+    return this.post_title;
+  }
+  getCommentData(){
+    return this.comment_data;
+  }
+
 }

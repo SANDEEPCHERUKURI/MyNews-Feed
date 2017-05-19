@@ -26,6 +26,7 @@
         <p>{{i.post}}
         </p>
       </article>
+      <button class="btn btn-blog pull-right marginBottom10" (click)="viewpost(i.title)">VIEW THIS POST</button>
       <button class="btn btn-blog pull-left marginBottom10" (click)="add_comment(i.title)">ADD COMMENTS</button>
       <popup #popup2 (confirmClick)="add_com(this.ki)">
         <form class="form-horizontal">
@@ -41,11 +42,11 @@
     <br>
       <br>
       <br>
-     <div class="col-lg-4 pull-left" *ngIf="i.title==com_title">
+     <div *ngIf="i.title==com_title">
        <div *ngFor="let n_c of comment1">
          <ul class="list-group">
            <li class="list-group-item">
-             {{n_c}}
+             <h4>{{n_c.comby}}:</h4><h6>{{n_c.comtext}}</h6> <p class="pull-right">{{n_c.comon | date:'shortTime'}}</p>
            </li>
          </ul>
 

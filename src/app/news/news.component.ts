@@ -1,6 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {Popup} from 'ng2-opd-popup';
-import {HTTPService} from "./http-test.service"
+import {HTTPService} from "./http-test.service";
+import {DATATestService} from "../data-test.service"
 /*
  import {wrapProgram} from "tslint";
  import {ActivatedRoute} from "@angular/router";
@@ -21,11 +22,12 @@ import { LocalStorageService } from 'angular-2-local-storage';
 })
 export class NewsComponent implements OnInit{
  // @Input() name: string;
-  public date;
+  public date = new Date();
   public tit:string="";
   public com_com="";
   public post:string="";
   //public User_name;
+  public userDate= new Date();
   public data;
   public news;
   public com;
@@ -35,12 +37,12 @@ export class NewsComponent implements OnInit{
   public login;
   public c;
   //public f_user;
-  constructor(public _httpService: HTTPService,private Routes:Router,public LocalStorage:LocalStorageService) {
+  constructor(public _httpService: HTTPService,private Routes:Router,public LocalStorage:LocalStorageService, public dataservice:DATATestService) {
 
     this._httpService.getjsondata()
       .subscribe(data => this.data = data,
         error => alert(error),
-        () => console.log("Finished")
+        () => console.log(this.data)
       );
     this._httpService.getcommdata()
       .subscribe(com => this.com = com,
@@ -81,10 +83,7 @@ export class NewsComponent implements OnInit{
       }
     }
   }
-  add(){
-
-    this.tit;
-    this.post;
+  add=()=>{
     let n=false;
     n=this.validate();
   // alert(n);
@@ -92,11 +91,20 @@ export class NewsComponent implements OnInit{
       let obj={
         title: this.tit,
         post:this.post,
-        postBy:this.c
+        postBy:this.c,
+        poston:this.userDate,
+        likes:[{
+          likeby:"",
+          likeon:"",
+        }]
       };
       let obj1={
         title:this.tit,
-        comment:[]
+        comment:[{
+          comtext:"",
+          comby:"",
+          comon:"",
+        }]
       };
       this.com.push(obj1);
       this.data.push(obj);
@@ -108,7 +116,7 @@ export class NewsComponent implements OnInit{
     }
 
   }
-  dis(name){
+  dis=(name:string)=>{
     let k=false;
     k=this.validate();
     if(k){
@@ -147,18 +155,27 @@ export class NewsComponent implements OnInit{
     this.com_com="";
   }
   add_com(dc){
-
+    let flag=0;
     let add=false;
     add=this.validate();
     if(add && this.com_com!=="")
     {
       for(let co=0;co<this.com.length;co++){
+        flag=0;
         // alert(dc+"=========>");
         if(this.com[co].title===this.ki){
           //  alert(this.ki+"<----------");
           //let new_comment=(<HTMLInputElement>document.getElementById("com_com")).value
-          this.com_com;
-          this.com[co].comment.push(this.com_com);
+          let comobj={
+            comtext:this.com_com,
+            comby:this.c,
+            comon:this.date
+          }
+          this.com[co].comment.push(comobj);
+          break;
+        }
+        else{
+          flag=1;
         }
       }
       this.clear1();
@@ -230,6 +247,9 @@ export class NewsComponent implements OnInit{
     this.Routes.navigate(['/login']);
 
   }
-
+  viewpost=(post_title)=>{
+    this.dataservice.setNewsData(post_title,this.data,this.com);
+    this.Routes.navigate(['/viewpost'])
+  }
 
 }
