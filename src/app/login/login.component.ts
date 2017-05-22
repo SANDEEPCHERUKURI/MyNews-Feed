@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {HTTPTestService} from "./http-login.service"
-import { Routes } from '@angular/router';
 import {Router,NavigationExtras} from '@angular/router';
 import { LocalStorageService } from 'angular-2-local-storage';
 

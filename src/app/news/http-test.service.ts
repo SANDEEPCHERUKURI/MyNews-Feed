@@ -6,7 +6,7 @@ export class HTTPService {
   constructor (private _http:Http){
 
   }
-  getjsondata(){
+  getNewsdata(){
     return this._http.get('assets/news.json')
       .map(res=>res.json());
   }

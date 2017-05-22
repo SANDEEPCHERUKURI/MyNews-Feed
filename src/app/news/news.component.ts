@@ -39,7 +39,7 @@ export class NewsComponent implements OnInit{
   //public f_user;
   constructor(public _httpService: HTTPService,private Routes:Router,public LocalStorage:LocalStorageService, public dataservice:DATATestService) {
 
-    this._httpService.getjsondata()
+    this._httpService.getNewsdata()
       .subscribe(data => this.data = data,
         error => alert(error),
         () => console.log(this.data)
@@ -83,7 +83,7 @@ export class NewsComponent implements OnInit{
       }
     }
   }
-  add=()=>{
+  addPost=()=>{
     let n=false;
     n=this.validate();
   // alert(n);
@@ -142,7 +142,7 @@ export class NewsComponent implements OnInit{
   //   }
   //
   // }
-  clear(){
+  clear=()=>{
     this.tit="";
     //alert(this.tit);
     this.post="";
@@ -154,41 +154,41 @@ export class NewsComponent implements OnInit{
   //   // (<HTMLInputElement>document.getElementById("com_com")).value="";
   //   this.com_com="";
   // }
-  add_com(dc){
-    let flag=0;
-    let add=false;
-    add=this.validate();
-    if(add && this.com_com!=="")
-    {
-      for(let co=0;co<this.com.length;co++){
-        flag=0;
-        // alert(dc+"=========>");
-        if(this.com[co].title===this.ki){
-          //  alert(this.ki+"<----------");
-          //let new_comment=(<HTMLInputElement>document.getElementById("com_com")).value
-          let comobj={
-            comtext:this.com_com,
-            comby:this.c,
-            comon:this.date
-          }
-          this.com[co].comment.push(comobj);
-          break;
-        }
-        else{
-          flag=1;
-        }
-      }
-      //this.clear1();
-     // this.popup2.hide();
-    }
-    else{
-      this.showPopup4();
-    }
-    //alert("12");
-
-
-
-  }
+  // add_com(dc){
+  //   let flag=0;
+  //   let add=false;
+  //   add=this.validate();
+  //   if(add && this.com_com!=="")
+  //   {
+  //     for(let co=0;co<this.com.length;co++){
+  //       flag=0;
+  //       // alert(dc+"=========>");
+  //       if(this.com[co].title===this.ki){
+  //         //  alert(this.ki+"<----------");
+  //         //let new_comment=(<HTMLInputElement>document.getElementById("com_com")).value
+  //         let comobj={
+  //           comtext:this.com_com,
+  //           comby:this.c,
+  //           comon:this.date
+  //         }
+  //         this.com[co].comment.push(comobj);
+  //         break;
+  //       }
+  //       else{
+  //         flag=1;
+  //       }
+  //     }
+  //     //this.clear1();
+  //    // this.popup2.hide();
+  //   }
+  //   else{
+  //     this.showPopup4();
+  //   }
+  //   //alert("12");
+  //
+  //
+  //
+  // }
   showPopup1(){
     this.popup1.options = {
       cancleBtnClass: "btn btn-default",
@@ -234,7 +234,7 @@ export class NewsComponent implements OnInit{
   // }
   showPopup4(){
     this.popup4.options = {
-      cancleBtnClass: "btn btn-default",
+      cancleBtnClass: "btn btn-default",  // This Method is to show th pop for add the new post
       confirmBtnClass: "btn btn-default",
       color: "#60B95D",
       header: "Error",
